@@ -1,5 +1,6 @@
 "use client";
 import Input from "@/components/Input";
+import Image from "next/image";
 import React from "react";
 
 const Auth = () => {
@@ -19,7 +20,13 @@ const Auth = () => {
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-cover">
       <div className="bg-black v-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
-          <img src="/images/logo.png" alt="logo" className="h-12" />
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            className="h-12"
+            width={178}
+            height={48}
+          />
         </nav>
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:max-w-md rounded-md w-full">

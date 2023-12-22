@@ -29,8 +29,7 @@ const Auth = () => {
       await signIn("credentials", {
         email,
         password,
-        redirect: true,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
     } catch (error) {
       console.error(error);
@@ -117,7 +116,7 @@ const Auth = () => {
               cursor-pointer
               hover:opacity-80
               transition"
-                onClick={() => signIn("google", { callbackUrl: "/" })}
+                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
               >
                 <FcGoogle size={30} />
               </div>
@@ -133,7 +132,7 @@ const Auth = () => {
               cursor-pointer
               hover:opacity-80
               transition"
-                onClick={() => signIn("github", { callbackUrl: "/" })}
+                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
               >
                 <FaGithub size={30} />
               </div>

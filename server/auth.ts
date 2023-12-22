@@ -3,7 +3,12 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+
 import Credentials from "next-auth/providers/credentials";
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 import prismadb from "@/lib/prismadb";
 
@@ -29,8 +34,16 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  // adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(prismadb),
   providers: [
+    Github({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+    }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
     Credentials({
       id: "credentials",
       name: "Credentials",

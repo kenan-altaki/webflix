@@ -42,8 +42,8 @@ NEXTAUTH_SECRET=
 ### Initialise local cluster
 
 ```shell
-chmod +x init_mongodb.sh
-./init_mongodb.sh
+chmod +x ./database/init_mongodb.sh
+./database/init_mongodb.sh
 ```
 
 ### Start the app

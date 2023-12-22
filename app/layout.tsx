@@ -4,7 +4,7 @@ import { NextAuthProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "WebFlix",
-  description: "A NetFlix clone~",
+  description: "A NetFlix clone!",
 };
 
 export default function RootLayout({

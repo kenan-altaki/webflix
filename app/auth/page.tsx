@@ -1,11 +1,15 @@
 "use client";
-import Input from "@/components/Input";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+
+import axios from "axios";
+
+import Input from "@/components/Input";
 
 const Auth = () => {
   const [email, setEmail] = React.useState("");
-  const [username, setUsername] = React.useState("");
+  const [name, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const [variant, setVariant] = React.useState("login");
@@ -15,6 +19,32 @@ const Auth = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  const login = React.useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [email, password]);
+
+  const register = React.useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, login]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-cover">
@@ -42,7 +72,7 @@ const Auth = () => {
                   }}
                   id="username"
                   type="text"
-                  value={username}
+                  value={name}
                 />
               )}
               <Input
@@ -64,7 +94,10 @@ const Auth = () => {
                 value={password}
               />
             </div>
-            <button className="bg-red-600 p-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+            <button
+              className="bg-red-600 p-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+              onClick={variant === "login" ? login : register}
+            >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
             <p className="text-neutral-500 mt-12">

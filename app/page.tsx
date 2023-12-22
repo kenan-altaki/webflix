@@ -1,3 +1,15 @@
-export default function Home() {
-  return <h1 className="text-2xl text-green-500">WebFlix</h1>;
+import { redirect } from "next/navigation";
+
+import { getServerAuthSession } from "@/server/auth";
+
+import HomePage from "./component";
+
+export default async function Home() {
+  const session = await getServerAuthSession();
+
+  if (session) {
+    return <HomePage />;
+  }
+
+  redirect("/auth");
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { NextAuthProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "WebFlix",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <NextAuthProvider>
+        <body>{children}</body>
+      </NextAuthProvider>
     </html>
   );
 }

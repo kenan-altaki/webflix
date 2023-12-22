@@ -80,9 +80,6 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
   secret: process.env.NEXTAUTH_SECRET,
-  theme: {
-    logo: "/RelyComply-Logo-2.svg",
-  },
   debug: process.env.NODE_ENV === "development",
 };
 

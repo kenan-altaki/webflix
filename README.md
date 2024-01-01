@@ -39,15 +39,9 @@ NEXTAUTH_JWT_SECRET=
 NEXTAUTH_SECRET=
 ```
 
-### Initialise local cluster
-
-```shell
-chmod +x ./database/init_mongodb.sh
-./database/init_mongodb.sh
-```
-
 ### Start the app
 
 ```shell
+docker compose up -d
 npm run dev
 ```

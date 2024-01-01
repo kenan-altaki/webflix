@@ -8,9 +8,9 @@ interface PlayButtonProps {
 
 const PlayButton: React.FC<PlayButtonProps> = ({ movieId }) => {
   return (
-    <button
-      onClick={() => redirect(`/watch/${movieId}`)}
-      className="
+    <a href={`/watch/${movieId}`}>
+      <button
+        className="
         bg-white 
         rounded-md 
         py-1 md:py-2 
@@ -24,10 +24,11 @@ const PlayButton: React.FC<PlayButtonProps> = ({ movieId }) => {
         hover:bg-neutral-300
         transition
         "
-    >
-      <PlayIcon className="w-4 md:w-7 text-black mr-1" />
-      Play
-    </button>
+      >
+        <PlayIcon className="w-4 md:w-7 text-black mr-1" />
+        Play
+      </button>
+    </a>
   );
 };
 
